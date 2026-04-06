@@ -1,0 +1,366 @@
+/* src/pages/Exercises.css */
+
+/* =========================================
+   1. ШАПКА: ПОШУК ТА М'ЯЗОВІ ФІЛЬТРИ
+   ========================================= */
+.exercises-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Рядок пошуку */
+.search-bar {
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-bar input {
+    width: 100%;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    padding: 12px 20px;
+    border-radius: 25px;
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.search-bar input:focus {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+/* Фільтри м'язів */
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-filter {
+    white-space: nowrap; /* Щоб текст у кнопках не переносився */
+}
+
+/* =========================================
+   2. СІТКА КАРТОК ВПРАВ
+   ========================================= */
+.exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.exercise-card {
+    background-color: var(--bg-panel);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.1);
+    border-color: var(--accent-green);
+}
+
+.exercise-image {
+    height: 200px;
+    position: relative;
+    background-color: #2a2a35;
+    overflow: hidden;
+}
+
+.exercise-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.exercise-card:hover .exercise-image img {
+    transform: scale(1.05);
+}
+
+.exercise-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 2;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background-color: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(4px);
+}
+
+.badge.muscle { color: var(--accent-green); border: 1px solid var(--accent-green); }
+.badge.difficulty { color: var(--accent-blue); border: 1px solid var(--accent-blue); }
+
+.exercise-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.exercise-content h4 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    line-height: 1.3;
+}
+
+.exercise-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.btn-technique {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.btn-technique:hover {
+    background-color: var(--accent-blue);
+    color: var(--bg-dark);
+    border-color: var(--accent-blue);
+}
+
+/* Кнопка "Сердечко" на картці вправи */
+.btn-fav {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: rgba(18, 18, 18, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+    z-index: 10;
+    color: var(--text-muted);
+}
+
+.btn-fav:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-fav.active {
+    background-color: rgba(255, 71, 87, 0.15);
+    color: #ff4757;
+    border-color: rgba(255, 71, 87, 0.4);
+}
+
+/* =========================================
+   3. САЙДБАР: КОНТРОЛЬ ГІДА
+   ========================================= */
+.exercises-sidebar {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group h3 {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.filter-select {
+    width: 100%;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4" viewBox="0 0 292.4 292.4"><path fill="%23a0a0a0" d="M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 127.9c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.2-5.5-12.8z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 12px auto;
+    transition: border-color 0.3s ease;
+}
+
+.filter-select:focus,
+.filter-select:hover {
+    border-color: var(--accent-green);
+}
+
+.difficulty-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.difficulty-filters button {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.difficulty-filters button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+}
+
+.difficulty-filters button.active {
+    background: var(--accent-blue);
+    color: var(--bg-dark);
+    font-weight: bold;
+}
+
+/* --- СПИСОК УЛЮБЛЕНИХ ВПРАВ --- */
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--bg-panel);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    min-height: 80px;
+}
+
+.fav-item-empty {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 10px 0;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* =========================================
+   АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ / ПЛАНШЕТІВ
+   ========================================= */
+@media (max-width: 900px) {
+    /* 1. Робимо сайдбар горизонтальним скролом (Ховаємо скролбар!) */
+    .exercises-sidebar {
+        margin-top: 0;
+        padding-top: 10px;
+        border-top: none;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 5px;
+
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;     /* Firefox */
+    }
+
+    .exercises-sidebar::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .filter-group h3 { display: none; } /* Ховаємо заголовки сайдбару */
+
+    .filter-select {
+        width: auto;
+        min-width: 180px;
+        margin-bottom: 0;
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+
+    /* Фільтр складності робимо горизонтальним */
+    .difficulty-filters {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .difficulty-filters button {
+        white-space: nowrap;
+        padding: 10px 16px;
+        border: 1px solid transparent;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .difficulty-filters button:not(.active) {
+        border-color: var(--border-color);
+    }
+
+    /* 2. Робимо фільтри м'язів горизонтальним скролом (Ховаємо скролбар!) */
+    .filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    /* Ховаємо блок "Улюблені" в сайдбарі для мобільних */
+    .favorites-list, .filter-group.favorites-group {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .exercises-grid {
+        grid-template-columns: 1fr; /* Картки на всю ширину на телефоні */
+    }
+}

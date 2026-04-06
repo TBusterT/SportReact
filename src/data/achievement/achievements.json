@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Новачок",
+    "description": "Виконати перше тренування",
+    "icon": "https://cdn-icons-png.flaticon.com/512/3144/3144866.png",
+    "points": 50,
+    "isUnlocked": true,
+    "unlockedDate": "10.01.2026",
+    "current": 1,
+    "target": 1,
+    "unit": ""
+  },
+  {
+    "id": 2,
+    "title": "Серія 5 днів",
+    "description": "Тренуватися 5 днів поспіль",
+    "icon": "https://cdn-icons-png.flaticon.com/512/5987/5987825.png",
+    "points": 150,
+    "isUnlocked": true,
+    "unlockedDate": "15.02.2026",
+    "current": 5,
+    "target": 5,
+    "unit": " дн"
+  },
+  {
+    "id": 3,
+    "title": "10 000 кроків",
+    "description": "Пройти 10 000 кроків за день",
+    "icon": "https://cdn-icons-png.flaticon.com/512/8146/8146757.png",
+    "points": 100,
+    "isUnlocked": false,
+    "unlockedDate": null,
+    "current": 8432,
+    "target": 10000,
+    "unit": " кр"
+  },
+  {
+    "id": 4,
+    "title": "Калорійний майстер",
+    "description": "Дотримуватися калорійної норми 7 днів",
+    "icon": "https://cdn-icons-png.flaticon.com/512/3063/3063080.png",
+    "points": 200,
+    "isUnlocked": true,
+    "unlockedDate": "20.02.2026",
+    "current": 7,
+    "target": 7,
+    "unit": " дн"
+  },
+  {
+    "id": 5,
+    "title": "50 тренувань",
+    "description": "Виконати загалом 50 тренувань",
+    "icon": "https://cdn-icons-png.flaticon.com/512/2936/2936886.png",
+    "points": 500,
+    "isUnlocked": false,
+    "unlockedDate": null,
+    "current": 24,
+    "target": 50,
+    "unit": ""
+  },
+  {
+    "id": 6,
+    "title": "Водний баланс",
+    "description": "Випити 2.5 л води щодня протягом тижня",
+    "icon": "https://cdn-icons-png.flaticon.com/512/3105/3105807.png",
+    "points": 150,
+    "isUnlocked": false,
+    "unlockedDate": null,
+    "current": 1.5,
+    "target": 2.5,
+    "unit": " л"
+  }
+]

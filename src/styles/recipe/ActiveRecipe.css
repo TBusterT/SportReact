@@ -1,0 +1,250 @@
+/* src/styles/ActiveRecipe.css */
+
+.recipe-mode {
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    padding: 2rem;
+    color: var(--text-main);
+}
+
+/* Header */
+.recipe-header {
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+}
+
+.btn-back {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    color: var(--accent-green);
+}
+
+/* Контейнер */
+.recipe-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Hero секція */
+.recipe-hero {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 400px;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.recipe-hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.recipe-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+    z-index: 2;
+}
+
+.recipe-hero-content {
+    position: relative;
+    z-index: 3;
+    padding: 3rem;
+    width: 100%;
+}
+
+.category-badge {
+    background-color: var(--accent-blue);
+    color: var(--bg-dark);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.recipe-hero h1 {
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.recipe-meta-badges {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.recipe-macros {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.recipe-macros .macro {
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+/* Нижня сітка */
+.recipe-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.ingredients-panel,
+.instructions-panel {
+    background-color: var(--bg-panel);
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.recipe-details-grid h3 {
+    color: var(--accent-green);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+/* Чек-лист інгредієнтів */
+.checklist {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.4;
+}
+
+.checklist input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent-green);
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+/* Кроки приготування */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.step-item {
+    display: flex;
+    gap: 1.5rem;
+    background-color: rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+
+.step-number {
+    background-color: var(--bg-dark);
+    color: var(--accent-blue);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    border: 2px solid var(--accent-blue);
+}
+
+.step-text {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+/* Адаптивність */
+@media (max-width: 900px) {
+    .recipe-details-grid {
+        grid-template-columns: 1fr 1.5fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .recipe-mode {
+        padding: 1rem;
+    }
+
+    .recipe-hero {
+        height: 350px;
+    }
+
+    .recipe-hero-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .recipe-hero h1 {
+        font-size: 2rem;
+    }
+
+    .recipe-details-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .ingredients-panel,
+    .instructions-panel {
+        padding: 1.5rem;
+    }
+
+    .step-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}

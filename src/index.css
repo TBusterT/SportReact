@@ -1,13 +1,517 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* =========================================
+   src/index.css
+   Головний файл стилів FitMonitor
+   ========================================= */
+
+:root {
+  --bg-dark: #121212;
+  --bg-panel: #1e1e24;
+  --accent-green: #00ff88;
+  --accent-blue: #00d2ff;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+  --border-color: #333;
+  --shadow: 0 10px 30px rgba(0, 255, 136, 0.08);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ====================== ГЛОБАЛЬНІ СТИЛІ ====================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ====================== БОКОВА ПАНЕЛЬ ====================== */
+.sidebar {
+  width: 250px;
+  background-color: var(--bg-panel);
+  padding: 2rem;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* ====================== ГОЛОВНИЙ КОНТЕНТ ====================== */
+.main-content {
+  flex: 1;
+  padding: 2rem 3rem;
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+header h1 {
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.15);
+}
+
+/* ====================== ЗАГАЛЬНІ ЕЛЕМЕНТИ ====================== */
+.section-title {
+  margin-bottom: 1.8rem;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Кнопки */
+.btn-small {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+  transform: translateY(-2px);
+}
+
+.btn-start {
+  background-color: var(--accent-green);
+  color: var(--bg-dark);
+  border: none;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.btn-start:hover {
+  background-color: #00cc77;
+  transform: scale(1.03);
+}
+
+/* Фільтри */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.filters button {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.filters button:hover,
+.filters button.active {
+  background: var(--accent-green);
+  color: var(--bg-dark);
+  border-color: var(--accent-green);
+  font-weight: 600;
+}
+
+/* Прогрес-бар (універсальний) */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-dark);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ====================== WIDGETS (для Dashboard) ====================== */
+.dashboard-widgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.widget {
+  background-color: var(--bg-panel);
+  border-radius: 20px;
+  padding: 1.8rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.widget:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-green);
+  box-shadow: var(--shadow);
+}
+
+.widget h3 {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.widget .data {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.widget .data span {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ====================== КАРТКИ ТРЕНУВАНЬ ====================== */
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.8rem;
+}
+
+.training-card {
+  background-color: var(--bg-panel);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.training-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent-green);
+  box-shadow: var(--shadow);
+}
+
+.card-image {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.training-card:hover .card-image img {
+  transform: scale(1.08);
+}
+
+.card-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(18, 18, 18, 0.85);
+  color: var(--accent-blue);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+}
+
+.card-content {
+  padding: 1.8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h4 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.card-content .card-info {
+  display: flex;
+  gap: 16px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.card-content p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+/* ====================== ФУТЕР ====================== */
+.main-footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--accent-green);
+}
+
+/* ====================== АДАПТИВНІСТЬ ====================== */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 1.8rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #root {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 1rem 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(30, 30, 36, 0.98);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .user-profile {
+    width: 100%;
+    justify-content: space-between;
+    background-color: var(--bg-panel);
+    padding: 12px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+  }
+
+  .dashboard-widgets {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-widgets {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .training-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .widget {
+    padding: 1.4rem;
+  }
+}
+
+/* ====================== АДАПТИВНІСТЬ (МОБІЛЬНІ) ====================== */
+
+@media (max-width: 768px) {
+  #root {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 1.2rem 1.5rem; /* Зменшуємо вертикальні відступи */
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+
+    /* Розміщуємо логотип зверху, а меню — під ним */
+    flex-direction: column;
+    align-items: flex-start; /* Вирівнюємо логотип по лівому краю */
+    gap: 1.2rem;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--bg-panel);
+    backdrop-filter: blur(12px);
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 0; /* Прибираємо зайві відступи */
+  }
+
+  .nav-menu {
+    flex-direction: row; /* Кнопки в один рядок */
+    width: 100%;
+    overflow-x: auto; /* Дозволяємо горизонтальну прокрутку */
+    gap: 1.5rem;
+    padding-bottom: 8px; /* Відступ для кращого вигляду при скролі */
+
+    /* Приховуємо стандартний скролбар */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-menu li {
+    white-space: nowrap; /* Щоб назви пунктів не переносилися на новий рядок */
+  }
+
+  .nav-menu li a {
+    font-size: 1.05rem;
+    padding: 5px 0;
+  }
 }

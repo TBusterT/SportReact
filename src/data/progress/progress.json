@@ -1,0 +1,41 @@
+{
+  "overall": {
+    "workouts": 124,
+    "calories": 45678,
+    "steps": 1234567,
+    "streak": 5
+  },
+  "charts": {
+    "stepsWeekly": [8200, 9100, 7500, 10200, 8800, 9500, 8432],
+    "caloriesMonthly": [1200, 1500, 1100, 1800, 1400, 1600, 1345]
+  },
+  "history": [
+    {
+      "id": 1,
+      "title": "Силове тренування (Фулбоді)",
+      "duration": "45 хв",
+      "calories": 400,
+      "date": "20.03.2026",
+      "timestamp": "2026-03-20",
+      "image": "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg"
+    },
+    {
+      "id": 11,
+      "title": "Ранкова Йога",
+      "duration": "20 хв",
+      "calories": 120,
+      "date": "19.03.2026",
+      "timestamp": "2026-03-19",
+      "image": "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg"
+    },
+    {
+      "id": 16,
+      "title": "HIIT Спалювання жиру",
+      "duration": "30 хв",
+      "calories": 500,
+      "date": "18.03.2026",
+      "timestamp": "2026-03-18",
+      "image": "https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg"
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+/* src/pages/Achievements.css */
+
+/* =========================================
+   1. БЛОК СТАТИСТИКИ ПРОФІЛЮ
+   ========================================= */
+.achievements-overview,
+.achievements-stats {
+    margin-bottom: 3rem;
+}
+
+.achievements-overview h2,
+.achievements-stats h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background-color: var(--bg-panel);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 8px 20px rgba(0, 210, 255, 0.1);
+}
+
+.stat-card h3 {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-main);
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.stat-detail {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   2. КАРТКИ АЧІВОК
+   ========================================= */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.achievement-card {
+    background-color: var(--bg-panel);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.1);
+}
+
+/* Статуси карток */
+.achievement-card.unlocked {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.05);
+}
+
+.achievement-card.locked {
+    opacity: 0.6;
+    border-color: var(--border-color);
+    filter: grayscale(80%); /* Робимо невідкриті ачівки сірими */
+}
+
+.achievement-card.locked:hover {
+    opacity: 0.9;
+    filter: grayscale(0%);
+    border-color: var(--text-muted);
+}
+
+.achievement-image {
+    height: 160px;
+    background-color: #2a2a35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.achievement-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.achievement-details {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.achievement-details h4 {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.achievement-points {
+    font-size: 0.85rem;
+    color: #ffcc00;
+    font-weight: normal;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.achievement-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    line-height: 1.4;
+}
+
+/* Блок прогресу або статусу розблокування */
+.achievement-status,
+.achievement-progress-info {
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.achievement-status {
+    color: var(--accent-green);
+}
+
+.achievement-progress-text {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+/* =========================================
+   3. СТИЛІ ФІЛЬТРІВ У САЙДБАРІ (Для Ачівок)
+   ========================================= */
+.sidebar-filters {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group h3 {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.filters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-weight: normal;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+}
+
+.filter-btn.active {
+    background: var(--accent-green);
+    color: var(--bg-dark);
+    font-weight: bold;
+}
+
+/* =========================================
+   АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ
+   ========================================= */
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Адаптація фільтрів сайдбару під горизонтальний скрол */
+    .sidebar-filters {
+        margin-top: 0;
+        padding-top: 10px;
+        border-top: none;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .sidebar-filters::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+    }
+
+    .filter-group {
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .filter-group h3 {
+        display: none; /* Ховаємо "Статус" на мобільному */
+    }
+
+    .filters-list {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        white-space: nowrap;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .stat-card {
+        padding: 1.2rem;
+    }
+}

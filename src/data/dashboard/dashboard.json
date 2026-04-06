@@ -1,0 +1,24 @@
+{
+  "user": {
+    "name": "Олексію",
+    "streak": 5
+  },
+  "widgets": {
+    "steps": {
+      "current": 8432,
+      "target": 10000
+    },
+    "calories": {
+      "current": 450,
+      "target": 600
+    },
+    "activeTime": {
+      "current": 45,
+      "target": 60
+    },
+    "water": {
+      "current": 1.5,
+      "target": 2.5
+    }
+  }
+}

@@ -1,0 +1,502 @@
+[
+  {
+    "id": 1,
+    "title": "Фулбоді силове тренування",
+    "image": "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg",
+    "badge": "Середній",
+    "duration": "50 хв",
+    "calories": "450 ккал",
+    "description": "Комплекс на все тіло: присідання, жим лежачи, тяга штанги.",
+    "category": "Силові"
+  },
+  {
+    "id": 2,
+    "title": "Тренування ніг та сідниць",
+    "image": "https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg",
+    "badge": "Середній",
+    "duration": "45 хв",
+    "calories": "380 ккал",
+    "description": "Присідання, випади та румунська тяга.",
+    "category": "Силові"
+  },
+  {
+    "id": 3,
+    "title": "Груди та плечі",
+    "image": "https://images.pexels.com/photos/2261477/pexels-photo-2261477.jpeg",
+    "badge": "Профі",
+    "duration": "40 хв",
+    "calories": "420 ккал",
+    "description": "Жим штанги та гантелей для розвитку грудей.",
+    "category": "Силові"
+  },
+  {
+    "id": 4,
+    "title": "Спина та біцепс",
+    "image": "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg",
+    "badge": "Середній",
+    "duration": "35 хв",
+    "calories": "350 ккал",
+    "description": "Підтягування та тяга верхнього блоку.",
+    "category": "Силові"
+  },
+  {
+    "id": 5,
+    "title": "Силове для новачків",
+    "image": "https://images.pexels.com/photos/4753996/pexels-photo-4753996.jpeg",
+    "badge": "Новачок",
+    "duration": "30 хв",
+    "calories": "280 ккал",
+    "description": "Базові вправи з легкою вагою.",
+    "category": "Силові"
+  },
+  {
+    "id": 6,
+    "title": "Трицепс та плечі",
+    "image": "https://images.pexels.com/photos/6456306/pexels-photo-6456306.jpeg",
+    "badge": "Середній",
+    "duration": "40 хв",
+    "calories": "360 ккал",
+    "description": "Французький жим та розгинання рук.",
+    "category": "Силові"
+  },
+  {
+    "id": 7,
+    "title": "Система 5x5",
+    "image": "https://images.pexels.com/photos/2261485/pexels-photo-2261485.jpeg",
+    "badge": "Профі",
+    "duration": "55 хв",
+    "calories": "500 ккал",
+    "description": "Силова програма для росту сили.",
+    "category": "Силові"
+  },
+  {
+    "id": 8,
+    "title": "Руки та передпліччя",
+    "image": "https://images.pexels.com/photos/3838389/pexels-photo-3838389.jpeg",
+    "badge": "Середній",
+    "duration": "25 хв",
+    "calories": "220 ккал",
+    "description": "Згинання рук з гантелями.",
+    "category": "Силові"
+  },
+  {
+    "id": 9,
+    "title": "Домашні гантелі",
+    "image": "https://images.pexels.com/photos/6456297/pexels-photo-6456297.jpeg",
+    "badge": "Новачок",
+    "duration": "35 хв",
+    "calories": "310 ккал",
+    "description": "Комплекс вправ з гантелями вдома.",
+    "category": "Силові"
+  },
+  {
+    "id": 10,
+    "title": "Спина та трапеція",
+    "image": "https://images.pexels.com/photos/6455825/pexels-photo-6455825.jpeg",
+    "badge": "Профі",
+    "duration": "45 хв",
+    "calories": "390 ккал",
+    "description": "Шраги та тяги штанги.",
+    "category": "Силові"
+  },
+  {
+    "id": 11,
+    "title": "Ранкова йога",
+    "image": "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg",
+    "badge": "Новачок",
+    "duration": "20 хв",
+    "calories": "130 ккал",
+    "description": "Легка йога для пробудження.",
+    "category": "Йога"
+  },
+  {
+    "id": 12,
+    "title": "Йога на гнучкість",
+    "image": "https://images.pexels.com/photos/4324020/pexels-photo-4324020.jpeg",
+    "badge": "Середній",
+    "duration": "35 хв",
+    "calories": "160 ккал",
+    "description": "Глибока розтяжка.",
+    "category": "Йога"
+  },
+  {
+    "id": 13,
+    "title": "Вечірня релакс-йога",
+    "image": "https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg",
+    "badge": "Новачок",
+    "duration": "25 хв",
+    "calories": "110 ккал",
+    "description": "Розслаблення перед сном.",
+    "category": "Йога"
+  },
+  {
+    "id": 14,
+    "title": "Vinyasa Yoga",
+    "image": "https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg",
+    "badge": "Середній",
+    "duration": "40 хв",
+    "calories": "280 ккал",
+    "description": "Динамічний потік асан.",
+    "category": "Йога"
+  },
+  {
+    "id": 15,
+    "title": "Йога для постави",
+    "image": "https://images.pexels.com/photos/4498151/pexels-photo-4498151.jpeg",
+    "badge": "Новачок",
+    "duration": "30 хв",
+    "calories": "140 ккал",
+    "description": "Вправи для здорової спини.",
+    "category": "Йога"
+  },
+  {
+    "id": 16,
+    "title": "HIIT жироспалювання",
+    "image": "https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg",
+    "badge": "Профі",
+    "duration": "30 хв",
+    "calories": "520 ккал",
+    "description": "Інтенсивні інтервали.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 17,
+    "title": "Табата тренування",
+    "image": "https://images.pexels.com/photos/1954525/pexels-photo-1954525.jpeg",
+    "badge": "Середній",
+    "duration": "18 хв",
+    "calories": "380 ккал",
+    "description": "20 секунд роботи.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 18,
+    "title": "Кардіо бокс",
+    "image": "https://images.pexels.com/photos/4761671/pexels-photo-4761671.jpeg",
+    "badge": "Новачок",
+    "duration": "25 хв",
+    "calories": "310 ккал",
+    "description": "Удари та рух.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 19,
+    "title": "Інтервальний біг",
+    "image": "https://raceexpert.com.ua/image/catalog/uploads/2021/01/interval-beg-1-1024x538.jpg",
+    "badge": "Середній",
+    "duration": "40 хв",
+    "calories": "480 ккал",
+    "description": "Спринти та відновлення.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 20,
+    "title": "HIIT екстрим",
+    "image": "https://images.pexels.com/photos/2780762/pexels-photo-2780762.jpeg",
+    "badge": "Профі",
+    "duration": "22 хв",
+    "calories": "580 ккал",
+    "description": "Максимальна інтенсивність.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 21,
+    "title": "Планка та прес",
+    "image": "https://images.pexels.com/photos/4325462/pexels-photo-4325462.jpeg",
+    "badge": "Середній",
+    "duration": "15 хв",
+    "calories": "160 ккал",
+    "description": "Сильний прес.",
+    "category": "Без обладнання"
+  },
+  {
+    "id": 22,
+    "title": "Віджимання та присідання",
+    "image": "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg",
+    "badge": "Новачок",
+    "duration": "20 хв",
+    "calories": "210 ккал",
+    "description": "Класичний bodyweight.",
+    "category": "Без обладнання"
+  },
+  {
+    "id": 23,
+    "title": "Бурпі комплекс",
+    "image": "https://images.pexels.com/photos/6456140/pexels-photo-6456140.jpeg",
+    "badge": "Середній",
+    "duration": "25 хв",
+    "calories": "290 ккал",
+    "description": "Вибухова витривалість.",
+    "category": "Без обладнання"
+  },
+  {
+    "id": 24,
+    "title": "Випади вдома",
+    "image": "https://images.pexels.com/photos/6456303/pexels-photo-6456303.jpeg",
+    "badge": "Новачок",
+    "duration": "18 хв",
+    "calories": "180 ккал",
+    "description": "Ноги та баланс.",
+    "category": "Без обладнання"
+  },
+  {
+    "id": 25,
+    "title": "Статичний фітнес",
+    "image": "https://images.pexels.com/photos/6455798/pexels-photo-6455798.jpeg",
+    "badge": "Середній",
+    "duration": "30 хв",
+    "calories": "250 ккал",
+    "description": "Ізометричні вправи.",
+    "category": "Без обладнання"
+  },
+  {
+    "id": 26,
+    "title": "Тренування кору",
+    "image": "https://images.pexels.com/photos/6456144/pexels-photo-6456144.jpeg",
+    "badge": "Середній",
+    "duration": "25 хв",
+    "calories": "230 ккал",
+    "description": "Планки та скручування.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 27,
+    "title": "Сильний кор",
+    "image": "https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg",
+    "badge": "Профі",
+    "duration": "20 хв",
+    "calories": "220 ккал",
+    "description": "Стабілізація корпусу.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 28,
+    "title": "Спина вдома",
+    "image": "https://images.pexels.com/photos/3757376/pexels-photo-3757376.jpeg",
+    "badge": "Новачок",
+    "duration": "30 хв",
+    "calories": "260 ккал",
+    "description": "Вправи для спини.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 29,
+    "title": "Стабільність корпусу",
+    "image": "https://images.pexels.com/photos/4498606/pexels-photo-4498606.jpeg",
+    "badge": "Середній",
+    "duration": "25 хв",
+    "calories": "230 ккал",
+    "description": "Баланс та кор.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 30,
+    "title": "Тренування постави",
+    "image": "https://images.pexels.com/photos/6456288/pexels-photo-6456288.jpeg",
+    "badge": "Новачок",
+    "duration": "18 хв",
+    "calories": "150 ккал",
+    "description": "Антисутулість.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 31,
+    "title": "HIIT + сила",
+    "image": "https://images.pexels.com/photos/4754146/pexels-photo-4754146.jpeg",
+    "badge": "Профі",
+    "duration": "35 хв",
+    "calories": "420 ккал",
+    "description": "Комбінація сили і кардіо.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 32,
+    "title": "Кардіо танці",
+    "image": "https://images.pexels.com/photos/3757957/pexels-photo-3757957.jpeg",
+    "badge": "Новачок",
+    "duration": "30 хв",
+    "calories": "290 ккал",
+    "description": "Танцювальний фітнес.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 33,
+    "title": "Спринт тренування",
+    "image": "https://cdn.create.vista.com/api/media/small/150627196/stock-photo-sportswoman-on-starting-line",
+    "badge": "Середній",
+    "duration": "35 хв",
+    "calories": "410 ккал",
+    "description": "Спринти на максимум.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 34,
+    "title": "Стрибки та координація",
+    "image": "https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg",
+    "badge": "Середній",
+    "duration": "28 хв",
+    "calories": "330 ккал",
+    "description": "Пліометричні вправи.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 35,
+    "title": "Функціональний фітнес",
+    "image": "https://images.pexels.com/photos/4753986/pexels-photo-4753986.jpeg",
+    "badge": "Середній",
+    "duration": "40 хв",
+    "calories": "390 ккал",
+    "description": "Функціональні рухи.",
+    "category": "Силові"
+  },
+  {
+    "id": 36,
+    "title": "Тренування пресу",
+    "image": "https://images.pexels.com/photos/4325460/pexels-photo-4325460.jpeg",
+    "badge": "Середній",
+    "duration": "20 хв",
+    "calories": "200 ккал",
+    "description": "Ізоляція пресу.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 37,
+    "title": "Силові підтягування",
+    "image": "https://img.tsn.ua/cached/266/tsn-135859377404ec64163c97d964721c31/thumbs/1200x630/41/d1/4a337beeb7851ff275865be056b0d141.jpeg",
+    "badge": "Профі",
+    "duration": "30 хв",
+    "calories": "320 ккал",
+    "description": "Тренування на турніку.",
+    "category": "Силові"
+  },
+  {
+    "id": 38,
+    "title": "Гантелі + кардіо",
+    "image": "https://images.pexels.com/photos/6456153/pexels-photo-6456153.jpeg",
+    "badge": "Середній",
+    "duration": "33 хв",
+    "calories": "360 ккал",
+    "description": "Силові інтервали.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 39,
+    "title": "Домашній фітнес",
+    "image": "https://images.pexels.com/photos/4325472/pexels-photo-4325472.jpeg",
+    "badge": "Новачок",
+    "duration": "25 хв",
+    "calories": "270 ккал",
+    "description": "Тренування вдома.",
+    "category": "Без обладнання"
+  },
+  {
+    "id": 40,
+    "title": "Bodyweight інтенсив",
+    "image": "https://cdn.betterme.world/articles/wp-content/uploads/2025/05/BP-117-bodyweight-workout-split.png",
+    "badge": "Профі",
+    "duration": "28 хв",
+    "calories": "310 ккал",
+    "description": "Інтенсив без ваг.",
+    "category": "Без обладнання"
+  },
+  {
+    "id": 41,
+    "title": "Силова витривалість",
+    "image": "https://images.pexels.com/photos/6456290/pexels-photo-6456290.jpeg",
+    "badge": "Середній",
+    "duration": "45 хв",
+    "calories": "430 ккал",
+    "description": "Багато повторень.",
+    "category": "Силові"
+  },
+  {
+    "id": 42,
+    "title": "Фітнес для спини",
+    "image": "https://kamyanske.com.ua/wp-content/uploads/2023/12/uprajneniya-na-moshnuyu-spinu-cover.jpg",
+    "badge": "Новачок",
+    "duration": "30 хв",
+    "calories": "240 ккал",
+    "description": "Зміцнення спини.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 43,
+    "title": "Йога баланс",
+    "image": "https://images.pexels.com/photos/3822356/pexels-photo-3822356.jpeg",
+    "badge": "Середній",
+    "duration": "32 хв",
+    "calories": "170 ккал",
+    "description": "Баланс і координація.",
+    "category": "Йога"
+  },
+  {
+    "id": 44,
+    "title": "Power Yoga",
+    "image": "https://images.pexels.com/photos/4662438/pexels-photo-4662438.jpeg",
+    "badge": "Профі",
+    "duration": "40 хв",
+    "calories": "310 ккал",
+    "description": "Силова йога.",
+    "category": "Йога"
+  },
+  {
+    "id": 45,
+    "title": "Stretching",
+    "image": "https://images.pexels.com/photos/4325470/pexels-photo-4325470.jpeg",
+    "badge": "Новачок",
+    "duration": "20 хв",
+    "calories": "120 ккал",
+    "description": "Розтяжка всього тіла.",
+    "category": "Йога"
+  },
+  {
+    "id": 46,
+    "title": "Cross Training",
+    "image": "https://images.pexels.com/photos/4753929/pexels-photo-4753929.jpeg",
+    "badge": "Профі",
+    "duration": "38 хв",
+    "calories": "470 ккал",
+    "description": "Комбіноване тренування.",
+    "category": "Кардіо"
+  },
+  {
+    "id": 47,
+    "title": "Core Stability",
+    "image": "https://images.pexels.com/photos/6456157/pexels-photo-6456157.jpeg",
+    "badge": "Середній",
+    "duration": "24 хв",
+    "calories": "210 ккал",
+    "description": "Стабільність корпусу.",
+    "category": "Спина та Кори"
+  },
+  {
+    "id": 48,
+    "title": "Lower Body Blast",
+    "image": "https://cdn.media.amplience.net/i/thegymgroup/The_Gym_Group_Asset-Generic-Member_Doing_Glute_Bridge_At_A_Lower_Body_Gym_Class?fmt=auto&h=545&w=1024&sm=c&qlt=default&$qlt$&$poi$",
+    "badge": "Середній",
+    "duration": "34 хв",
+    "calories": "370 ккал",
+    "description": "Ноги та сідниці.",
+    "category": "Силові"
+  },
+  {
+    "id": 49,
+    "title": "Upper Body Strength",
+    "image": "https://images.pexels.com/photos/6456301/pexels-photo-6456301.jpeg",
+    "badge": "Середній",
+    "duration": "36 хв",
+    "calories": "360 ккал",
+    "description": "Груди, спина, плечі.",
+    "category": "Силові"
+  },
+  {
+    "id": 50,
+    "title": "Total Body Workout",
+    "image": "https://builtwithscience.com/wp-content/uploads/2025/01/Full-body-workout-plan-cover-image-1.webp",
+    "badge": "Профі",
+    "duration": "45 хв",
+    "calories": "480 ккал",
+    "description": "Комплекс на все тіло.",
+    "category": "Силові"
+  }
+]
