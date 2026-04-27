@@ -1,12 +1,14 @@
-// src/pages/Calendar.tsx
-import React, { useState } from 'react';
+// src/pages/Calendar/Calendar.tsx
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
 
 // Підключаємо стилі
 import '../../styles/calendar/calendar.css';
 
-// Дані
-import dashData from '../../data/dashboard/dashboard.json';
-import calendarData from '../../data/calendar/calendar.json';
+// Firebase та Auth
+import { db } from '../../firebase';
+import { useAuth } from '../../contexts/AuthContext';
+import { uploadCalendarEvents } from '../../services/seedDatabase';
 
 // Компонент картки події
 import CalendarEventCard from '../../components/cards/Calendar/CalendarEventCard.tsx';
@@ -15,11 +17,32 @@ import CalendarEventCard from '../../components/cards/Calendar/CalendarEventCard
 import type { CalendarEvent } from '../../types';
 
 const Calendar: React.FC = () => {
-    // === БЕЗПЕЧНА ОБРОБКА JSON ===
-    const rawData = calendarData as unknown;
-    const events: CalendarEvent[] = Array.isArray(rawData)
-        ? (rawData as CalendarEvent[])
-        : (rawData as { events?: CalendarEvent[] }).events || [];
+    const { currentUser } = useAuth();
+
+    // --- СТАНИ ДЛЯ ДАНИХ З БАЗИ ---
+    const [events, setEvents] = useState<CalendarEvent[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    // ЗАВАНТАЖЕННЯ ДАНИХ (useEffect)
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, "calendar_events"));
+                const fetchedData = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as unknown as CalendarEvent[];
+
+                setEvents(fetchedData);
+            } catch (error) {
+                console.error("Помилка завантаження календаря:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchEvents();
+    }, []);
 
     // --- СТАН ДЛЯ НАВІГАЦІЇ ---
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -69,98 +92,134 @@ const Calendar: React.FC = () => {
     });
 
     return (
-        <>
+        <div className="calendar-page">
             <header>
                 <h1>Календар тренувань</h1>
                 <div className="user-profile">
-                    <span>Привіт, {dashData.user.name}! 🔥 {dashData.user.streak} днів серії</span>
+                    <span>Привіт, {currentUser?.email || 'Спортсмен'}! 🗓️</span>
                     <div className="avatar"></div>
                 </div>
             </header>
 
-            {/* --- МІСЯЧНИЙ КАЛЕНДАР --- */}
-            <div className="calendar-controls">
-                <button className="btn-prev" onClick={prevMonth}>&lt; Попередній</button>
-                <h2>{monthNames[currentMonth]} {currentYear}</h2>
-                <button className="btn-next" onClick={nextMonth}>Наступний &gt;</button>
-            </div>
-
-            <div className="calendar-grid">
-                {daysOfWeek.map(day => (
-                    <div key={`header-${day}`} className="calendar-header">{day}</div>
-                ))}
-
-                {/* Порожні клітинки на початку місяця */}
-                {Array.from({ length: firstDayIndex }).map((_, i) => (
-                    <div key={`empty-${i}`} className="calendar-day empty"></div>
-                ))}
-
-                {/* Дні місяця */}
-                {Array.from({ length: daysInMonth }).map((_, i) => {
-                    const day = i + 1;
-                    const dateStr = formatDateStr(currentYear, currentMonth, day);
-                    const dayEvents = events.filter(e => e.date === dateStr);
-                    const todayClass = isToday(currentYear, currentMonth, day) ? 'today' : '';
-
-                    return (
-                        <div key={`day-${day}`} className={`calendar-day ${todayClass}`}>
-                            <div className="day-number">{day}</div>
-                            <div className="day-events">
-                                {dayEvents.map(event => (
-                                    <CalendarEventCard
-                                        key={event.id}
-                                        event={event}
-                                        variant="month"
-                                    />
-                                ))}
-                            </div>
+            {loading ? (
+                <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--accent-blue)' }}>
+                    <h2>Синхронізація розкладу... ⏳</h2>
+                </div>
+            ) : (
+                <>
+                    {/* --- КНОПКА ЗАВАНТАЖЕННЯ (Показується тільки якщо база порожня) --- */}
+                    {events.length === 0 && (
+                        <div style={{ textAlign: 'center', padding: '2rem', backgroundColor: 'var(--bg-panel)', borderRadius: '15px', marginBottom: '2rem' }}>
+                            <h2 style={{ marginBottom: '10px' }}>Ваш календар порожній 📅</h2>
+                            <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
+                                Натисніть кнопку нижче, щоб завантажити тренувальні плани.
+                            </p>
+                            <button
+                                onClick={async () => {
+                                    await uploadCalendarEvents();
+                                    window.location.reload();
+                                }}
+                                style={{
+                                    backgroundColor: 'var(--accent-blue)', color: 'white',
+                                    padding: '12px 24px', borderRadius: '10px', border: 'none',
+                                    fontWeight: 'bold', cursor: 'pointer', transition: '0.3s'
+                                }}
+                            >
+                                📥 ЗАВАНТАЖИТИ КАЛЕНДАР
+                            </button>
                         </div>
-                    );
-                })}
-            </div>
+                    )}
+                    {/* ----------------------------------------------------------------- */}
 
-            {/* --- ТИЖНЕВИЙ РОЗКЛАД --- */}
-            <div className="week-view">
-                <div className="calendar-controls">
-                    <button className="btn-prev" onClick={prevWeek}>&lt; Попередній тиждень</button>
-                    <h2>Розклад на тиждень</h2>
-                    <button className="btn-next" onClick={nextWeek}>Наступний тиждень &gt;</button>
-                </div>
-
-                <div className="week-grid">
-                    {weekDays.map((date, idx) => {
-                        const dateStr = formatDateStr(date.getFullYear(), date.getMonth(), date.getDate());
-                        const dayEvents = events.filter(e => e.date === dateStr);
-
-                        return (
-                            <div key={`week-day-${idx}`} className="week-day">
-                                <h3>
-                                    {daysOfWeek[idx]}
-                                    <span className="week-day-date">
-                                        {date.getDate()} {monthNames[date.getMonth()].toLowerCase()}
-                                    </span>
-                                </h3>
-                                {dayEvents.length === 0 ? (
-                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                                        Вихідний
-                                    </p>
-                                ) : (
-                                    <ul>
-                                        {dayEvents.map(event => (
-                                            <CalendarEventCard
-                                                key={event.id}
-                                                event={event}
-                                                variant="week"
-                                            />
-                                        ))}
-                                    </ul>
-                                )}
+                    {events.length > 0 && (
+                        <>
+                            {/* --- МІСЯЧНИЙ КАЛЕНДАР --- */}
+                            <div className="calendar-controls">
+                                <button className="btn-prev" onClick={prevMonth}>&lt; Попередній</button>
+                                <h2>{monthNames[currentMonth]} {currentYear}</h2>
+                                <button className="btn-next" onClick={nextMonth}>Наступний &gt;</button>
                             </div>
-                        );
-                    })}
-                </div>
-            </div>
-        </>
+
+                            <div className="calendar-grid">
+                                {daysOfWeek.map(day => (
+                                    <div key={`header-${day}`} className="calendar-header">{day}</div>
+                                ))}
+
+                                {/* Порожні клітинки на початку місяця */}
+                                {Array.from({ length: firstDayIndex }).map((_, i) => (
+                                    <div key={`empty-${i}`} className="calendar-day empty"></div>
+                                ))}
+
+                                {/* Дні місяця */}
+                                {Array.from({ length: daysInMonth }).map((_, i) => {
+                                    const day = i + 1;
+                                    const dateStr = formatDateStr(currentYear, currentMonth, day);
+                                    const dayEvents = events.filter(e => e.date === dateStr);
+                                    const todayClass = isToday(currentYear, currentMonth, day) ? 'today' : '';
+
+                                    return (
+                                        <div key={`day-${day}`} className={`calendar-day ${todayClass}`}>
+                                            <div className="day-number">{day}</div>
+                                            <div className="day-events">
+                                                {dayEvents.map(event => (
+                                                    <CalendarEventCard
+                                                        key={event.id}
+                                                        event={event}
+                                                        variant="month"
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* --- ТИЖНЕВИЙ РОЗКЛАД --- */}
+                            <div className="week-view">
+                                <div className="calendar-controls">
+                                    <button className="btn-prev" onClick={prevWeek}>&lt; Попередній тиждень</button>
+                                    <h2>Розклад на тиждень</h2>
+                                    <button className="btn-next" onClick={nextWeek}>Наступний тиждень &gt;</button>
+                                </div>
+
+                                <div className="week-grid">
+                                    {weekDays.map((date, idx) => {
+                                        const dateStr = formatDateStr(date.getFullYear(), date.getMonth(), date.getDate());
+                                        const dayEvents = events.filter(e => e.date === dateStr);
+
+                                        return (
+                                            <div key={`week-day-${idx}`} className="week-day">
+                                                <h3>
+                                                    {daysOfWeek[idx]}
+                                                    <span className="week-day-date">
+                                                        {date.getDate()} {monthNames[date.getMonth()].toLowerCase()}
+                                                    </span>
+                                                </h3>
+                                                {dayEvents.length === 0 ? (
+                                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                        Вихідний
+                                                    </p>
+                                                ) : (
+                                                    <ul>
+                                                        {dayEvents.map(event => (
+                                                            <CalendarEventCard
+                                                                key={event.id}
+                                                                event={event}
+                                                                variant="week"
+                                                            />
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </>
+            )}
+        </div>
     );
 };
 

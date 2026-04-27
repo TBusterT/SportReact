@@ -20,13 +20,13 @@ export interface DashboardWidgets {
 }
 
 export interface DashboardData {
-    user: {
+    streak?: number; // <-- Додали сюди
+    user?: {         // <-- Додали знак питання (зробили необов'язковим)
         name: string;
         streak: number;
     };
     widgets: DashboardWidgets;
 }
-
 export interface DashboardWidgetProps {
     title: string;
     current: string | number;

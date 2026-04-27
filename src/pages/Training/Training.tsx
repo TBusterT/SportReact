@@ -1,10 +1,11 @@
-// src/pages/Training.tsx
-import React from 'react';
+// src/pages/Training/Training.tsx
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
 
-// Дані
-import trainingsData from '../../data/training/trainings.json';
-import dashData from '../../data/dashboard/dashboard.json';
+// Firebase
+import { db } from '../../firebase';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Компоненти
 import TrainingCard from '../../components/cards/Training/TrainingCard.tsx';
@@ -16,11 +17,38 @@ import '../../styles/training/training.css';
 import type { TrainingPlan } from '../../types';
 
 const Training: React.FC = () => {
+    const { currentUser } = useAuth(); // Беремо поточного користувача
     const [searchParams] = useSearchParams();
 
-    const trainings = trainingsData as TrainingPlan[];
 
-    // Фільтри з URL (з сайдбару)
+    const [trainings, setTrainings] = useState<TrainingPlan[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+
+    useEffect(() => {
+        const fetchTrainings = async () => {
+            try {
+                // Звертаємось до колекції "trainings" у Firestore
+                const querySnapshot = await getDocs(collection(db, "trainings"));
+
+                // Перетворюємо відповідь у масив об'єктів
+                const fetchedData = querySnapshot.docs.map(doc => ({
+                    id: doc.id, // Тепер ID це рядок з бази даних
+                    ...doc.data()
+                })) as TrainingPlan[];
+
+                setTrainings(fetchedData);
+            } catch (error) {
+                console.error("Помилка завантаження тренувань:", error);
+            } finally {
+                setLoading(false); // Вимикаємо лоадер у будь-якому випадку
+            }
+        };
+
+        fetchTrainings();
+    }, []);
+
+    // Фільтри з URL
     const category = searchParams.get('category') || 'Усі';
     const difficulty = searchParams.get('difficulty') || 'all';
     const duration = searchParams.get('duration') || 'all';
@@ -31,8 +59,9 @@ const Training: React.FC = () => {
         const matchCategory = category === 'Усі' || t.category === category;
         const matchDifficulty = difficulty === 'all' || t.badge === difficulty;
 
-        const tDuration = parseInt(t.duration, 10);
-        const tCalories = parseInt(t.calories, 10);
+        // Витягуємо числа з рядків ("50 хв" -> 50, "450 ккал" -> 450)
+        const tDuration = parseInt(t.duration.toString(), 10) || 0;
+        const tCalories = parseInt(t.calories.toString(), 10) || 0;
 
         let matchDuration = true;
         if (duration === 'short') matchDuration = tDuration <= 20;
@@ -53,7 +82,7 @@ const Training: React.FC = () => {
                 <h1>Тренування</h1>
                 <div className="user-profile">
                     <span>
-                        Привіт, {dashData.user.name}! 🔥 {dashData.user.streak} днів серії
+                        Привіт, {currentUser?.email || 'Спортсмен'}! 🔥
                     </span>
                     <div className="avatar"></div>
                 </div>
@@ -64,24 +93,24 @@ const Training: React.FC = () => {
                     <h2>Доступні програми</h2>
                 </div>
 
-                <div className="training-grid">
-                    {filteredTrainings.length === 0 ? (
-                        <p
-                            style={{
-                                gridColumn: '1/-1',
-                                textAlign: 'center',
-                                color: 'var(--text-muted)',
-                                padding: '3rem',
-                            }}
-                        >
-                            За вашими фільтрами нічого не знайдено 🕵️‍♂️
-                        </p>
-                    ) : (
-                        filteredTrainings.map((training) => (
-                            <TrainingCard key={training.id} training={training} />
-                        ))
-                    )}
-                </div>
+                {loading ? (
+                    // Показуємо завантаження, поки чекаємо сервер
+                    <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--accent-blue)' }}>
+                        <h3>Завантаження тренувань... ⏳</h3>
+                    </div>
+                ) : (
+                    <div className="training-grid">
+                        {filteredTrainings.length === 0 ? (
+                            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text-muted)', padding: '3rem' }}>
+                                За вашими фільтрами нічого не знайдено 🕵️‍♂️
+                            </p>
+                        ) : (
+                            filteredTrainings.map((training) => (
+                                <TrainingCard key={training.id} training={training} />
+                            ))
+                        )}
+                    </div>
+                )}
             </main>
         </div>
     );

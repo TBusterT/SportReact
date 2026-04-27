@@ -19,6 +19,9 @@ export interface MealItem {
 export interface TrackedItem {
     name: string;
     calories: number;
+    protein?: number;   // додаємо
+    fat?: number;
+    carbs?: number;
 }
 
 export interface DailyPlan {
